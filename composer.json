@@ -1,0 +1,30 @@
+{
+    "name": "su-pn-psu/yii2-borrow-material",
+    "description": "Borrow material management system for Yii2.",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "GPL-3.0",
+    "minimum-stability": "stable",
+    "support": {
+        "source": "https://github.com/su-pn-psu/yii2-borrow-material.git",
+        "issues": "https://github.com/su-pn-psu/yii2-borrow-material/issues"
+    },
+    "authors": [
+        {
+            "name": "Student Union Service",
+            "email": "ahamad.jedu@gmail.com",
+            "role" : "Developer"
+        }
+    ],
+    "require": {
+        "su-pn-psu/yii2-core": "dev-master",
+        "kartik-v/yii2-grid": "@dev",
+        "kartik-v/yii2-date-range": "dev-master",
+        "kartik-v/yii2-mpdf": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "suPnPsu\\borrowMaterial\\": ""
+        }
+    }
+}
