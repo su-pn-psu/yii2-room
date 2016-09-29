@@ -10,28 +10,7 @@ use suPnPsu\room\models\Room;
 /**
  * RoomSearch represents the model behind the search form about `suPnPsu\room\models\Room`.
  */
-class RoomSearch extends Room
-{
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['id', 'support_no', 'status', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
-            [['code', 'title', 'building', 'class', 'close_up','details'], 'safe'],
-        ];
-    }
-    public $details;
-
-    /**
-     * @inheritdoc
-     */
-    public function scenarios()
-    {
-        // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
-    }
+class RoomListSearch extends RoomSearch {
 
     /**
      * Creates data provider instance with search query applied
@@ -40,9 +19,9 @@ class RoomSearch extends Room
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Room::find();
+        $query->with('roomReserves');
 
         // add conditions that should always apply here
 
@@ -70,16 +49,17 @@ class RoomSearch extends Room
         ]);
 
         $query->andFilterWhere(['like', 'code', $this->code])
-            ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'building', $this->building])
-            ->andFilterWhere(['like', 'class', $this->class])
-            ->andFilterWhere(['like', 'close_up', $this->close_up])
-                
-            ->andFilterWhere(['like', 'support_no', $this->details])
-            ->andFilterWhere(['like', 'building', $this->details])
-            ->andFilterWhere(['like', 'class', $this->details])
-            ->andFilterWhere(['like', 'close_up', $this->details]);
+                ->andFilterWhere(['like', 'title', $this->title])
+                ->andFilterWhere(['like', 'building', $this->building])
+                ->andFilterWhere(['like', 'class', $this->class])
+                ->andFilterWhere(['like', 'close_up', $this->close_up]);
 
+        $query->orFilterWhere(['like', 'support_no', $this->details])
+                ->orFilterWhere(['like', 'building', $this->details])
+                ->orFilterWhere(['like', 'class', $this->details])
+                ->orFilterWhere(['like', 'close_up', $this->details]);
+        
         return $dataProvider;
     }
+
 }

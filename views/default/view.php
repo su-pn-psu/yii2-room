@@ -22,31 +22,41 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <p>
                 <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-                ],
-                ]) ?>
+                <?=
+                Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                        'method' => 'post',
+                    ],
+                ])
+                ?>
             </p>
+            
+            
+            <div style="padding:20px;font-size:18px;background-color: <?=$model->stylies->backgroundColor?>;color:<?=$model->stylies->textColor?>;border:5px solid <?=$model->stylies->borderColor?>;">
+                <?=$model->title?>
+            </div>
 
-            <?= DetailView::widget([
-            'model' => $model,
-            'attributes' => [
-                        'id',
-            'title',
-            'support_no',
-            'building',
-            'class',
-            'close_up',
-            'status',
-            'created_at',
-            'created_by',
-            'updated_at',
-            'updated_by',
-            ],
-            ]) ?>
+            <?=
+            DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    //'id',                    
+                    //'title',
+                    'code',
+                    'support_no',
+                    'building',
+                    'class',
+                    'close_up',
+                    'status',
+                    'created_at',
+                    'created_by',
+                    'updated_at',
+                    'updated_by',
+                ],
+            ])
+            ?>
 
         </div>
     </div><!--box-body pad-->

@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel suPnPsu\room\models\RoomSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'ห้องทั้งหมด');
+$this->title = Yii::t('app', 'Rooms');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -20,19 +20,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class='box-body pad'>
         <div class="room-index">
 
-            <?php Pjax::begin(); ?>    
+            <?php Pjax::begin(); ?>                            
             <?=
             GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-                    //'id',
+                    'id',
+                    'code',
                     'title',
                     'support_no',
                     'building',
-                    'class',
-                    'close_up',
+                    // 'class',
+                    // 'close_up',
                     // 'status',
                     // 'created_at',
                     // 'created_by',
@@ -42,6 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]);
             ?>
-<?php Pjax::end(); ?>        </div>
+<?php Pjax::end(); ?>       
+        </div>
     </div><!--box-body pad-->
 </div><!--box box-info-->
